@@ -515,7 +515,8 @@ def check_return_type(def_docstring, context, is_script):
     """
     if (not def_docstring) or is_script:
         return
-    if 'return' not in def_docstring.lower():
+    def_docstring = def_docstring.lower()
+    if '@return' not in def_docstring or '@rtype' not in def_docstring:
         tokens = list(tk.generate_tokens(StringIO(context).readline))
         after_return = [tokens[i + 1][0] for i, token in enumerate(tokens)
                         if token[1] == 'return']
