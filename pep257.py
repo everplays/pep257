@@ -506,6 +506,21 @@ def check_no_signature(def_docstring, context, is_script):
         return "PEP257 First line should not be definitions's \"signature\".",
 
 
+def check_parameters(def_docstring, context, is_script):
+    """custom check of parameters"""
+    argsSearch = re.search('^def[ \t]*[^(]+\((.*)\)', context)
+    arguments = argsSearch.group(1).split(',')
+    for argument in arguments:
+        argument = argument.strip()
+        if argument == "self":
+            continue
+        argument = argument.split('=')[0]
+        try:
+            context.index("@param "+argument+":")
+            context.index("@type "+argument+":")
+        except ValueError:
+            return "you should specify arguments and type of them",
+
 def check_return_type(def_docstring, context, is_script):
     """PEP257 Return value type should be mentioned.
 
