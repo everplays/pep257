@@ -68,6 +68,7 @@ Also, see examples in "Check functions" section.
 
 import re
 import inspect
+import sys
 from curses.ascii import isascii
 try:
     from StringIO import StringIO
@@ -334,8 +335,12 @@ def main(options, arguments):
             errors.extend(check_source(open(filename).read(), filename))
         except IOError:
             print "Error opening file %s" % filename
+            sys.exit(1)
     for error in sorted(errors):
         print(error)
+    if errors:
+        sys.exit(1)
+    sys.exit(0)
 
 
 #
