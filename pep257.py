@@ -509,6 +509,8 @@ def check_no_signature(def_docstring, context, is_script):
 def check_parameters(def_docstring, context, is_script):
     """custom check of parameters"""
     argsSearch = re.search('^def[ \t]*[^(]+\((.*)\)', context)
+    if not argsSearch:
+        return None
     arguments = argsSearch.group(1).split(',')
     for argument in arguments:
         argument = argument.strip()
