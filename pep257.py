@@ -255,6 +255,7 @@ class Error(object):
 
     def __init__(self, filename, source, docstring, context,
                  explanation, message, start=None, end=None):
+        docstring = str(docstring)
         self.filename = filename.split('/')[-1]
         self.source = source
         self.docstring = docstring
