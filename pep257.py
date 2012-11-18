@@ -518,6 +518,8 @@ def check_parameters(def_docstring, context, is_script):
         if argument == "self":
             continue
         argument = argument.split('=')[0]
+        if argument == "":
+            continue
         try:
             context.index("@param "+argument+":")
             context.index("@type "+argument+":")
