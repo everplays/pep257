@@ -328,7 +328,9 @@ def parse_options():
 
 def main(options, arguments):
     print('=' * 80)
-    print('Note: checks are relaxed for scripts (with #!) compared to modules.')
+    print(
+        'Note: checks are relaxed for scripts (with #!) compared to modules.'
+    )
     Error.options = options
     errors = []
     for filename in arguments:
@@ -521,10 +523,12 @@ def check_parameters(def_docstring, context, is_script):
         if argument == "":
             continue
         try:
-            context.index("@param "+argument+":")
-            context.index("@type "+argument+":")
+            context.index("@param " + argument + ":")
+            context.index("@type " + argument + ":")
         except ValueError:
-            return "you should specify arguments and type of them (%s)" % argument,
+            message = "you should specify arguments and type of them (%s)"
+            return (message % argument),
+
 
 def check_return_type(def_docstring, context, is_script):
     """PEP257 Return value type should be mentioned.
