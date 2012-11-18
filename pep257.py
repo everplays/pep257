@@ -524,7 +524,7 @@ def check_parameters(def_docstring, context, is_script):
             context.index("@param "+argument+":")
             context.index("@type "+argument+":")
         except ValueError:
-            return "you should specify arguments and type of them",
+            return "you should specify arguments and type of them (%s)" % argument,
 
 def check_return_type(def_docstring, context, is_script):
     """PEP257 Return value type should be mentioned.
